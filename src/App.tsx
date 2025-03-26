@@ -6,8 +6,19 @@ import copy from "copy-to-clipboard";
 
 function App() {
   return (
-    <div className="dark h-screen">
-      <Layout />
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      <div className="relative z-10 mx-auto max-w-6xl px-4 py-10">
+        <div className="mb-10 text-center">
+          <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+            Image Prompt Generator
+          </h1>
+          <p className="mt-3 text-lg text-gray-600 dark:text-gray-400">
+            Create perfect prompts for your AI image generation
+          </p>
+        </div>
+        <Layout />
+      </div>
     </div>
   );
 }
@@ -44,15 +55,24 @@ type selectTags = {
 };
 
 const Select = ({ setValue }: { setValue: (value: string) => void }) => {
+  const [activeLanguage, setActiveLanguage] = useState("EN");
+
   return (
     <div className="flex flex-col gap-5 items-start">
       <div className="flex flex-col items-start">
-        <div className="inline-flex rounded-lg border border-gray-200 p-1">
+        <div className="inline-flex rounded-lg border border-gray-200 bg-white p-1 dark:border-gray-700 dark:bg-gray-800">
           {["EN", "JA", "ZH"].map((lang) => (
             <button
               key={lang}
-              className="px-3 py-1.5 text-sm font-medium rounded-md transition-all hover:bg-gray-100 data-[state=active]:bg-white data-[state=active]:shadow-sm"
-              onClick={() => setValue(lang)}
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-300 ${
+                activeLanguage === lang
+                  ? "bg-blue-500/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400 shadow-sm"
+                  : "text-gray-700 hover:bg-gray-100/70 dark:text-gray-300 dark:hover:bg-gray-700/50"
+              }`}
+              onClick={() => {
+                setActiveLanguage(lang);
+                setValue(lang);
+              }}
             >
               {lang}
             </button>
@@ -85,18 +105,24 @@ function Layout() {
 
   return (
     <div className="flex h-full gap-8">
-      <div className="sticky top-0 h-screen w-[260px] overflow-auto border-r p-6">
-        <h3 className="mb-2 text-sm font-semibold">Language</h3>
-        <div className="mb-6">
+      <div className="sticky top-0 h-[calc(100vh-240px)] w-[280px] overflow-auto rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-xl p-6 dark:border-gray-800/50 dark:bg-gray-800/80 z-10">
+        <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
+          Language
+        </h3>
+        <div className="mb-8">
           <Select setValue={setLanguage} />
         </div>
-        <h3 className="mb-2 text-sm font-semibold">Options</h3>
+        <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
+          Categories
+        </h3>
         <div className="mt-2 flex flex-col gap-0">
           {Object.entries(record).map(([key]) => (
             <div key={key} className="mt-2 flex flex-col gap-0">
               <button
-                className={`flex w-full items-center justify-start rounded-md px-4 py-2 text-sm text-gray-600 transition-colors ${
-                  isSelect === Number(key) ? "bg-gray-100" : "hover:bg-gray-50"
+                className={`flex w-full items-center justify-start rounded-md px-4 py-2.5 text-sm font-medium transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 ${
+                  isSelect === Number(key)
+                    ? "bg-blue-50 text-blue-600 dark:bg-gray-700 dark:text-blue-400"
+                    : "text-gray-700 dark:text-gray-300"
                 }`}
                 onClick={() => setIsSelect(Number(key))}
               >
@@ -110,12 +136,12 @@ function Layout() {
           ))}
         </div>
       </div>
-      <div className="flex-1 p-6">
-        <div className="flex flex-wrap gap-4">
+      <div className="flex-1 overflow-auto rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-xl p-6 dark:border-gray-800/50 dark:bg-gray-800/80">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {record[isSelect]?.map((item, index) => (
             <button
               key={index}
-              className="flex h-auto w-full items-center rounded-md border p-4 transition-all hover:shadow-md active:scale-98 md:w-[calc(50%-8px)] lg:w-[calc(33.33%-11px)]"
+              className="group flex h-auto w-full items-center rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm p-4 transition-all duration-300 hover:border-blue-500/70 hover:bg-blue-50/50 active:scale-[0.98] dark:border-gray-700/50 dark:bg-gray-800/90 dark:hover:border-blue-400/70 dark:hover:bg-blue-900/20"
               onClick={() => {
                 setSelectTags((prev) => ({
                   ...prev,
@@ -123,43 +149,50 @@ function Layout() {
                 }));
               }}
             >
-              <span className="font-bold">
+              <span className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-all duration-300">
                 {item[Language.toLowerCase() as "en" | "ja" | "zh"]}
               </span>
             </button>
           ))}
         </div>
         {/* Show Prompt */}
-        <div className="mt-8 flex w-full gap-4">
-          <input
-            disabled
-            placeholder="Please select a tag"
-            value={prompt}
-            className="flex-1 rounded-md border bg-gray-50 px-3 py-2"
-          />
-          <div className="flex shrink-0 gap-1">
-            <button
-              className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
-              onClick={() => copy(prompt)}
-            >
-              Copy
-            </button>
-            <button
-              className="rounded-md border p-2 text-sm hover:bg-gray-50"
-              onClick={() => setSelectTags({})}
-            >
-              <HiOutlineTrash className="h-4 w-4" />
-            </button>
+        <div className="sticky bottom-0 mt-8 w-full bg-white/95 backdrop-blur-xl p-4 dark:bg-gray-800/90 rounded-lg border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
+          <div className="flex w-full gap-4">
+            <input
+              disabled
+              placeholder="Please select a tag"
+              value={prompt}
+              className="flex-1 rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm px-4 py-3 text-gray-900 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-100 transition-all duration-300 focus:border-blue-500/70 focus:ring-2 focus:ring-blue-500/20"
+            />
+            <div className="flex shrink-0 gap-2">
+              <button
+                className="rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm px-4 py-3 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-blue-500/70 hover:bg-blue-50/50 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-300 dark:hover:border-blue-400/70 dark:hover:bg-blue-900/20"
+                onClick={() => copy(prompt)}
+              >
+                Copy
+              </button>
+              <button
+                className="rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm p-3 text-sm text-gray-700 transition-all duration-300 hover:border-red-500/70 hover:bg-red-50/50 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-300 dark:hover:border-red-400/70 dark:hover:bg-red-900/20"
+                onClick={() => setSelectTags({})}
+              >
+                <HiOutlineTrash className="h-5 w-5" />
+              </button>
+            </div>
           </div>
         </div>
         {/* Remove added tags and adjust values (max: 10, min: -10) */}
-        <div className="mt-6 flex flex-col gap-3">
+        <div className="mt-6 flex flex-col gap-4">
           {Object.entries(selectTags).map(([tag, value]) => (
-            <div key={tag} className="flex items-center">
-              <span className="flex-1">{tag}</span>
+            <div
+              key={tag}
+              className="flex items-center rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm p-3 dark:border-gray-700/50 dark:bg-gray-800/90 transition-all duration-300 hover:border-blue-500/70"
+            >
+              <span className="flex-1 font-medium text-gray-900 dark:text-gray-100">
+                {tag}
+              </span>
               <div className="flex items-center gap-2">
                 <button
-                  className="rounded-md border px-3 py-1 text-sm hover:bg-gray-50"
+                  className="rounded-md border border-gray-200/50 bg-white/95 backdrop-blur-sm px-3 py-1.5 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-blue-500/70 hover:bg-blue-50/50 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-300 dark:hover:bg-blue-900/20"
                   onClick={() =>
                     setSelectTags((prev) => ({
                       ...prev,
@@ -169,9 +202,11 @@ function Layout() {
                 >
                   -
                 </button>
-                <span className="w-[40px] text-center">{value}</span>
+                <span className="w-[40px] text-center font-medium text-gray-900 dark:text-gray-100">
+                  {value}
+                </span>
                 <button
-                  className="rounded-md border px-3 py-1 text-sm hover:bg-gray-50"
+                  className="rounded-md border border-gray-200/50 bg-white/95 backdrop-blur-sm px-3 py-1.5 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-blue-500/70 hover:bg-blue-50/50 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-300 dark:hover:bg-blue-900/20"
                   onClick={() =>
                     setSelectTags((prev) => ({
                       ...prev,
@@ -182,7 +217,7 @@ function Layout() {
                   +
                 </button>
                 <button
-                  className="rounded-md border p-2 text-sm hover:bg-gray-50"
+                  className="rounded-md border border-gray-200/50 bg-white/95 backdrop-blur-sm p-2 text-sm text-gray-700 transition-all duration-300 hover:border-red-500/70 hover:bg-red-50/50 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-300 dark:hover:bg-red-900/20"
                   onClick={() =>
                     setSelectTags((prev) => {
                       const newTags = { ...prev };
