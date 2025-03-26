@@ -4,11 +4,10 @@ This repository provides a web application for efficiently creating and managing
 
 ## Features
 
-- **React**: Modern UI library for building interactive interfaces.
-- **TypeScript**: Strongly typed language for building robust applications.
-- **Vite**: Fast and secure web development environment.
-- **Chakra UI**: Accessible and customizable component library.
-- **next-themes**: Dark mode support with theme management.
+- **React**: Modern UI library for building interactive interfaces
+- **TypeScript**: Strongly typed language for building robust applications
+- **Vite**: Fast and secure web development environment
+- **Tailwind CSS**: Utility-first CSS framework for rapid UI development
 
 ## Getting Started
 
