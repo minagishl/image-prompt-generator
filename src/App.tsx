@@ -79,16 +79,12 @@ function Layout() {
 
   return (
     <div className="flex flex-col lg:flex-row h-full gap-8">
-      <div className="sticky top-0 h-auto lg:h-[calc(100vh-240px)] w-full lg:w-[280px] overflow-auto rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-xl p-4 lg:p-6 dark:border-gray-800/50 dark:bg-gray-800/80 z-10">
-        <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
-          Language
-        </h3>
+      <div className="sticky top-0 h-auto lg:h-[calc(100vh-240px)] w-full lg:w-[280px] overflow-auto rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-xl p-4 lg:p-6 z-10">
+        <h3 className="mb-3 text-lg font-semibold text-gray-900">Language</h3>
         <div className="mb-8">
           <LanguageSelector onChange={setLanguage} />
         </div>
-        <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
-          Categories
-        </h3>
+        <h3 className="mb-3 text-lg font-semibold text-gray-900">Categories</h3>
         <div className="mt-2 flex flex-col gap-0">
           {Object.entries(record).map(([key]) => (
             <div key={key} className="mt-2 flex flex-col gap-0">
@@ -106,7 +102,7 @@ function Layout() {
           ))}
         </div>
       </div>
-      <div className="flex-1 overflow-scroll h-auto lg:h-[calc(100vh-240px)] rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-xl p-4 lg:p-6 dark:border-gray-800/50 dark:bg-gray-800/80">
+      <div className="flex-1 overflow-scroll h-auto lg:h-[calc(100vh-240px)] rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-xl p-4 lg:p-6">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {record[isSelect]?.map((item, index) => (
             <Card
@@ -141,11 +137,9 @@ function Layout() {
           {Object.entries(selectTags).map(([tag, value]) => (
             <div
               key={tag}
-              className="flex items-center rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm p-3 dark:border-gray-700/50 dark:bg-gray-800/90 transition-all duration-300 hover:border-orange-500/70"
+              className="flex items-center rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm p-3 transition-all duration-300 hover:border-orange-500/70"
             >
-              <span className="flex-1 font-medium text-gray-900 dark:text-gray-100">
-                {tag}
-              </span>
+              <span className="flex-1 font-medium text-gray-900">{tag}</span>
               <div className="flex items-center gap-2">
                 <Button
                   variant="secondary"
@@ -158,7 +152,7 @@ function Layout() {
                 >
                   -
                 </Button>
-                <span className="w-[40px] text-center font-medium text-gray-900 dark:text-gray-100">
+                <span className="w-[40px] text-center font-medium text-gray-900">
                   {value}
                 </span>
                 <Button

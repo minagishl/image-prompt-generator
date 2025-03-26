@@ -15,15 +15,15 @@ export function Button({
   ...props
 }: ButtonProps) {
   const button = tv({
-    base: "rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm transition-all duration-300 dark:border-gray-700/50 dark:bg-gray-800/90",
+    base: "rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm transition-all duration-300",
     variants: {
       variant: {
         primary:
-          "px-4 py-3 text-sm font-medium text-gray-700 hover:border-orange-500/70 hover:bg-orange-50/50 dark:text-gray-300 dark:hover:border-orange-400/70 dark:hover:bg-orange-900/20",
+          "px-4 py-3 text-sm font-medium text-gray-700 hover:border-orange-500/70 hover:bg-orange-50/50",
         secondary:
-          "px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-orange-500/70 hover:bg-orange-50/50 dark:text-gray-300 dark:hover:bg-orange-900/20",
+          "px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-orange-500/70 hover:bg-orange-50/50",
         danger:
-          "text-sm text-gray-700 hover:border-red-500/70 hover:bg-red-50/50 dark:text-gray-300 dark:hover:border-red-400/70 dark:hover:bg-red-900/20",
+          "text-sm text-gray-700 hover:border-red-500/70 hover:bg-red-50/50",
       },
       icon: {
         true: "px-3.5 py-3.5",
@@ -65,11 +65,11 @@ interface CategoryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const categoryButton = tv({
-  base: "flex w-full items-center justify-start rounded-md px-4 py-2.5 text-sm font-medium transition-colors hover:bg-gray-100 dark:hover:bg-gray-700",
+  base: "flex w-full items-center justify-start rounded-md px-4 py-2.5 text-sm font-medium transition-colors hover:bg-gray-100",
   variants: {
     active: {
-      true: "bg-orange-50 text-orange-600 dark:bg-gray-700 dark:text-orange-400",
-      false: "text-gray-700 dark:text-gray-300",
+      true: "bg-orange-50 text-orange-600",
+      false: "text-gray-700",
     },
   },
   defaultVariants: {
