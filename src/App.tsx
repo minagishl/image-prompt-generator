@@ -156,7 +156,7 @@ function Layout() {
           ))}
         </div>
         {/* Show Prompt */}
-        <div className="sticky bottom-0 mt-8 w-full bg-white/95 backdrop-blur-xl p-4 dark:bg-gray-800/90 rounded-lg border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
+        <div className="mx-auto w-full rounded-xl border bg-neutral-500/5 p-4 backdrop-blur border-neutral-900/[0.05] sticky bottom-0 mt-8">
           <div className="flex w-full gap-4">
             <input
               disabled
