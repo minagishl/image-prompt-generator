@@ -1646,6 +1646,128 @@ export const options: TagGroup[] = [
   },
   {
     name: {
+      ja: 'ショットタイプ',
+      en: 'Shot type',
+      zh: '拍摄类型',
+    },
+    nsfw: false,
+    tags: [
+      {
+        tag: 'full body shot',
+        name: {
+          ja: '全身',
+          en: 'Full Body Shot',
+          zh: '全身',
+        },
+      },
+      {
+        tag: 'upper body',
+        name: {
+          ja: '上半身',
+          en: 'Upper Body',
+          zh: '上半身',
+        },
+      },
+      {
+        tag: 'half body photo',
+        name: {
+          ja: '上半身',
+          en: 'Half Body Photo',
+          zh: '上半身',
+        },
+      },
+      {
+        tag: 'closeup shot',
+        name: {
+          ja: 'クローズアップ',
+          en: 'Closeup Shot',
+          zh: '特写',
+        },
+      },
+      {
+        tag: 'intense closeup shot',
+        name: {
+          ja: '激しいクローズアップ',
+          en: 'Intense Closeup Shot',
+          zh: '强烈特写',
+        },
+      },
+      {
+        tag: 'extreme closeup shot',
+        name: {
+          ja: '極度のクローズアップ',
+          en: 'Extreme Closeup Shot',
+          zh: '极度特写',
+        },
+      },
+      {
+        tag: 'headshot',
+        name: {
+          ja: '顔のアップ',
+          en: 'Headshot',
+          zh: '头部特写',
+        },
+      },
+      {
+        tag: 'eye closeup shot',
+        name: {
+          ja: '目のアップ',
+          en: 'Eye Closeup Shot',
+          zh: '眼睛特写',
+        },
+      },
+      {
+        tag: 'macro shot',
+        name: {
+          ja: '超接近',
+          en: 'Macro Shot',
+          zh: '微距',
+        },
+      },
+      {
+        tag: 'medium shot',
+        name: {
+          ja: '中距離',
+          en: 'Medium Shot',
+          zh: '中距离',
+        },
+      },
+      {
+        tag: 'wide shot',
+        name: {
+          ja: '広範囲',
+          en: 'Wide Shot',
+          zh: '广角',
+        },
+      },
+      {
+        tag: 'long shot',
+        name: {
+          ja: '遠景',
+          en: 'Long Shot',
+          zh: '远景',
+        },
+      },
+      {
+        tag: 'extreme long shot',
+        name: {
+          ja: '極度の遠景',
+          en: 'Extreme Long Shot',
+          zh: '极远景',
+        },
+      },
+      {
+        tag: 'cowboy shot',
+        name: {
+          ja: '頭〜太もも',
+          en: 'Cowboy Shot',
+          zh: '牛仔镜头',
+        },
+      },
+    ],
+  },
+  {
+    name: {
       ja: 'ポーズ',
       en: 'Pose',
       zh: '暂停',
