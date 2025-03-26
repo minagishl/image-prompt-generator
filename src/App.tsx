@@ -104,8 +104,8 @@ function Layout() {
   }, [selectTags]);
 
   return (
-    <div className="flex h-full gap-8">
-      <div className="sticky top-0 h-[calc(100vh-240px)] w-[280px] overflow-auto rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-xl p-6 dark:border-gray-800/50 dark:bg-gray-800/80 z-10">
+    <div className="flex flex-col lg:flex-row h-full gap-8">
+      <div className="sticky top-0 h-auto lg:h-[calc(100vh-240px)] w-full lg:w-[280px] overflow-auto rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-xl p-4 lg:p-6 dark:border-gray-800/50 dark:bg-gray-800/80 z-10">
         <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
           Language
         </h3>
@@ -136,7 +136,7 @@ function Layout() {
           ))}
         </div>
       </div>
-      <div className="flex-1 overflow-scroll h-[calc(100vh-240px)] rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-xl p-6 dark:border-gray-800/50 dark:bg-gray-800/80">
+      <div className="flex-1 overflow-scroll h-auto lg:h-[calc(100vh-240px)] rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-xl p-4 lg:p-6 dark:border-gray-800/50 dark:bg-gray-800/80">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {record[isSelect]?.map((item, index) => (
             <button
@@ -157,14 +157,14 @@ function Layout() {
         </div>
         {/* Show Prompt */}
         <div className="mx-auto w-full rounded-xl border bg-neutral-500/5 p-4 backdrop-blur border-neutral-900/[0.05] sticky bottom-0 mt-8">
-          <div className="flex w-full gap-4">
+          <div className="flex flex-col sm:flex-row w-full gap-4">
             <input
               disabled
               placeholder="Please select a tag"
               value={prompt}
               className="flex-1 rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm px-4 py-3 text-gray-900 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-100 transition-all duration-300 focus:border-orange-500/70 focus:ring-2 focus:ring-orange-500/20"
             />
-            <div className="flex shrink-0 gap-2">
+            <div className="flex shrink-0 gap-2 justify-center sm:justify-start">
               <button
                 className="rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm px-4 py-3 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-orange-500/70 hover:bg-orange-50/50 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-300 dark:hover:border-orange-400/70 dark:hover:bg-orange-900/20"
                 onClick={() => copy(prompt)}
