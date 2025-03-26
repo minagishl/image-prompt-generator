@@ -112,10 +112,17 @@ function Layout() {
             <Card
               key={index}
               onClick={() => {
-                setSelectTags((prev) => ({
-                  ...prev,
-                  [item.tag]: 0,
-                }));
+                setSelectTags((prev) => {
+                  if (item.tag in prev) {
+                    const newTags = { ...prev };
+                    delete newTags[item.tag];
+                    return newTags;
+                  }
+                  return {
+                    ...prev,
+                    [item.tag]: 0,
+                  };
+                });
               }}
             >
               {item[Language.toLowerCase() as "en" | "ja" | "zh"]}
