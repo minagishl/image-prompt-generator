@@ -1,31 +1,14 @@
 import { useState, useEffect } from "react";
-import {
-  VStack,
-  Box,
-  Theme,
-  Stack,
-  Text,
-  Input,
-  Container,
-  Heading,
-} from "@chakra-ui/react";
-import { Button } from "@/components/ui/button";
 import type { Options } from "./context";
 import { options } from "./context";
 import { HiOutlineTrash } from "react-icons/hi";
-import { Group, IconButton } from "@chakra-ui/react";
 import copy from "copy-to-clipboard";
-import { SegmentedControl } from "@/components/ui/segmented-control";
 
 function App() {
   return (
-    <>
-      <Theme appearance="dark">
-        <Container maxW="container.xl" h="100vh" p={0}>
-          <Layout />
-        </Container>
-      </Theme>
-    </>
+    <div className="dark h-screen">
+      <Layout />
+    </div>
   );
 }
 
@@ -62,16 +45,21 @@ type selectTags = {
 
 const Select = ({ setValue }: { setValue: (value: string) => void }) => {
   return (
-    <Stack gap="5" align="flex-start">
-      <VStack key="sm" align="flex-start">
-        <SegmentedControl
-          size="sm"
-          defaultValue="EN"
-          items={["EN", "JA", "ZH"]}
-          onValueChange={(e) => e.value && setValue(e.value)}
-        />
-      </VStack>
-    </Stack>
+    <div className="flex flex-col gap-5 items-start">
+      <div className="flex flex-col items-start">
+        <div className="inline-flex rounded-lg border border-gray-200 p-1">
+          {["EN", "JA", "ZH"].map((lang) => (
+            <button
+              key={lang}
+              className="px-3 py-1.5 text-sm font-medium rounded-md transition-all hover:bg-gray-100 data-[state=active]:bg-white data-[state=active]:shadow-sm"
+              onClick={() => setValue(lang)}
+            >
+              {lang}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -96,34 +84,20 @@ function Layout() {
   }, [selectTags]);
 
   return (
-    <Box display="flex" h="100%" gap={8}>
-      <Box
-        w="260px"
-        p={6}
-        overflow="auto"
-        borderRightWidth="1px"
-        position="sticky"
-        top={0}
-        h="100vh"
-      >
-        <Heading as="h3" size="sm" mb={2}>
-          Language
-        </Heading>
-        <Box mb={6}>
+    <div className="flex h-full gap-8">
+      <div className="sticky top-0 h-screen w-[260px] overflow-auto border-r p-6">
+        <h3 className="mb-2 text-sm font-semibold">Language</h3>
+        <div className="mb-6">
           <Select setValue={setLanguage} />
-        </Box>
-        <Heading as="h3" size="sm" mb={2}>
-          Options
-        </Heading>
-        <Stack mt={2} flexDir="column" gap={0}>
+        </div>
+        <h3 className="mb-2 text-sm font-semibold">Options</h3>
+        <div className="mt-2 flex flex-col gap-0">
           {Object.entries(record).map(([key]) => (
-            <Stack key={key} mt={2} flexDir="column" gap={0}>
-              <Button
-                variant={isSelect === Number(key) ? "subtle" : "ghost"}
-                justifyContent="start"
-                size="sm"
-                paddingInlineStart={4}
-                color="fg.muted"
+            <div key={key} className="mt-2 flex flex-col gap-0">
+              <button
+                className={`flex w-full items-center justify-start rounded-md px-4 py-2 text-sm text-gray-600 transition-colors ${
+                  isSelect === Number(key) ? "bg-gray-100" : "hover:bg-gray-50"
+                }`}
                 onClick={() => setIsSelect(Number(key))}
               >
                 {
@@ -131,77 +105,61 @@ function Layout() {
                     Language.toLowerCase() as "en" | "ja" | "zh"
                   ]
                 }
-              </Button>
-            </Stack>
+              </button>
+            </div>
           ))}
-        </Stack>
-      </Box>
-      <Box flex="1" p={6}>
-        <Stack direction="row" wrap="wrap" gap={4}>
+        </div>
+      </div>
+      <div className="flex-1 p-6">
+        <div className="flex flex-wrap gap-4">
           {record[isSelect]?.map((item, index) => (
-            <Button
-              variant="outline"
-              alignItems={"center"}
+            <button
               key={index}
-              p={4}
-              height="auto"
-              borderWidth="1px"
-              borderRadius="md"
-              width={{
-                base: "100%",
-                md: "calc(50% - 8px)",
-                lg: "calc(33.33% - 11px)",
-              }}
-              transition="all 0.2s"
-              _active={{
-                transform: "scale(0.98)",
-              }}
-              _hover={{ shadow: "md" }}
+              className="flex h-auto w-full items-center rounded-md border p-4 transition-all hover:shadow-md active:scale-98 md:w-[calc(50%-8px)] lg:w-[calc(33.33%-11px)]"
               onClick={() => {
                 setSelectTags((prev) => ({
                   ...prev,
                   [item.tag]: 0,
                 }));
               }}
-              cursor="pointer"
             >
-              <Text fontWeight="bold">
+              <span className="font-bold">
                 {item[Language.toLowerCase() as "en" | "ja" | "zh"]}
-              </Text>
-            </Button>
+              </span>
+            </button>
           ))}
-        </Stack>
+        </div>
         {/* Show Prompt */}
-        <Stack mt={8} direction="row" gap={4} width="full">
-          <Box flex={1}>
-            <Input
-              disabled
-              placeholder="Please select a tag"
-              value={prompt}
-              width="full"
-            />
-          </Box>
-          <Group attached flexShrink={0}>
-            <Button variant="outline" size="sm" onClick={() => copy(prompt)}>
+        <div className="mt-8 flex w-full gap-4">
+          <input
+            disabled
+            placeholder="Please select a tag"
+            value={prompt}
+            className="flex-1 rounded-md border bg-gray-50 px-3 py-2"
+          />
+          <div className="flex shrink-0 gap-1">
+            <button
+              className="rounded-md border px-3 py-2 text-sm hover:bg-gray-50"
+              onClick={() => copy(prompt)}
+            >
               Copy
-            </Button>
-            <IconButton
-              variant="outline"
-              size="sm"
+            </button>
+            <button
+              className="rounded-md border p-2 text-sm hover:bg-gray-50"
               onClick={() => setSelectTags({})}
             >
-              <HiOutlineTrash />
-            </IconButton>
-          </Group>
-        </Stack>
+              <HiOutlineTrash className="h-4 w-4" />
+            </button>
+          </div>
+        </div>
         {/* Remove added tags and adjust values (max: 10, min: -10) */}
-        <Stack mt={6} gap={3}>
+        <div className="mt-6 flex flex-col gap-3">
           {Object.entries(selectTags).map(([tag, value]) => (
-            <Stack key={tag} direction="row" alignItems="center">
-              <Text flex="1">{tag}</Text>
-              <Stack direction="row" alignItems="center">
-                <Button
-                  size="sm"
+            <div key={tag} className="flex items-center">
+              <span className="flex-1">{tag}</span>
+              <div className="flex items-center gap-2">
+                <button
+                  className="rounded-md border px-3 py-1 text-sm hover:bg-gray-50"
                   onClick={() =>
                     setSelectTags((prev) => ({
                       ...prev,
@@ -210,12 +168,10 @@ function Layout() {
                   }
                 >
                   -
-                </Button>
-                <Text width="40px" textAlign="center">
-                  {value}
-                </Text>
-                <Button
-                  size="sm"
+                </button>
+                <span className="w-[40px] text-center">{value}</span>
+                <button
+                  className="rounded-md border px-3 py-1 text-sm hover:bg-gray-50"
                   onClick={() =>
                     setSelectTags((prev) => ({
                       ...prev,
@@ -224,10 +180,9 @@ function Layout() {
                   }
                 >
                   +
-                </Button>
-                <IconButton
-                  aria-label="Remove tag"
-                  size="sm"
+                </button>
+                <button
+                  className="rounded-md border p-2 text-sm hover:bg-gray-50"
                   onClick={() =>
                     setSelectTags((prev) => {
                       const newTags = { ...prev };
@@ -236,14 +191,14 @@ function Layout() {
                     })
                   }
                 >
-                  <HiOutlineTrash />
-                </IconButton>
-              </Stack>
-            </Stack>
+                  <HiOutlineTrash className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
           ))}
-        </Stack>
-      </Box>
-    </Box>
+        </div>
+      </div>
+    </div>
   );
 }
 
