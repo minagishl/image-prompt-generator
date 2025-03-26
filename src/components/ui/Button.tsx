@@ -22,7 +22,7 @@ export function Button({
     secondary:
       "px-3 py-1.5 text-sm font-medium text-gray-700 hover:border-orange-500/70 hover:bg-orange-50/50 dark:text-gray-300 dark:hover:bg-orange-900/20",
     danger: `${
-      icon ? "p-2" : "px-4 py-3"
+      icon ? "px-3.5 py-3.5" : "px-4 py-3"
     } text-sm text-gray-700 hover:border-red-500/70 hover:bg-red-50/50 dark:text-gray-300 dark:hover:border-red-400/70 dark:hover:bg-red-900/20`,
   };
 
