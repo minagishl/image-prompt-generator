@@ -834,6 +834,54 @@ export const options: TagGroup[] = [
           zh: '多',
         },
       },
+      {
+        tag: '6+girls',
+        name: {
+          ja: '6人以上の女の子',
+          en: '6+Girls',
+          zh: '6个以上的女孩',
+        },
+      },
+      {
+        tag: 'twins',
+        name: {
+          ja: 'ツインズ',
+          en: 'Twins',
+          zh: '双胞胎',
+        },
+      },
+      {
+        tag: 'couple',
+        name: {
+          ja: 'カップル',
+          en: 'Couple',
+          zh: '情侣',
+        },
+      },
+      {
+        tag: 'yuri',
+        name: {
+          ja: '百合',
+          en: 'Yuri',
+          zh: '百合',
+        },
+      },
+      {
+        tag: 'group shot',
+        name: {
+          ja: '集合写真',
+          en: 'Group Shot',
+          zh: '集体照',
+        },
+      },
+      {
+        tag: 'no humans',
+        name: {
+          ja: '人物なし',
+          en: 'No Humans',
+          zh: '无人物',
+        },
+      },
     ],
   },
   {
