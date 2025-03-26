@@ -21,7 +21,7 @@ export default defineConfig(() => {
       }),
       tailwindcss(),
       sitemap({
-        hostname: 'https://canvas.minagishl.com',
+        hostname: 'https://image-prompt-generator.pages.dev',
       }),
     ],
     build: {
