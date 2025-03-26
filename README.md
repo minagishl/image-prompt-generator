@@ -1,6 +1,4 @@
-<img alt="Image Prompt Generator" src="./public/preview.png" />
-
-## Introduction
+# Image Prompt Generator
 
 This repository provides a web application for efficiently creating and managing image generation prompts using React and TypeScript.
 
