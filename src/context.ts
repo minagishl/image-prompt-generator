@@ -20,6 +20,154 @@ type Tag = {
 export const options: TagGroup[] = [
   {
     name: {
+      ja: '品質',
+      en: 'Quality',
+      zh: '质量',
+    },
+    nsfw: false,
+    tags: [
+      {
+        tag: 'masterpiece',
+        name: {
+          ja: '傑作',
+          en: 'Masterpiece',
+          zh: '杰作',
+        },
+      },
+      {
+        tag: 'best quality',
+        name: {
+          ja: '最高品質',
+          en: 'Best Quality',
+          zh: '最高品质',
+        },
+      },
+      {
+        tag: 'high quality',
+        name: {
+          ja: '高品質',
+          en: 'High Quality',
+          zh: '高品质',
+        },
+      },
+      {
+        tag: 'detailed',
+        name: {
+          ja: '細部に描写',
+          en: 'Detailed',
+          zh: '细节',
+        },
+      },
+      {
+        tag: 'ultra detailed',
+        name: {
+          ja: '非常に詳細な描写',
+          en: 'Ultra Detailed',
+          zh: '超详细',
+        },
+      },
+      {
+        tag: 'hyper detailed',
+        name: {
+          ja: '超詳細な描写',
+          en: 'Hyper Detailed',
+          zh: '超级详细',
+        },
+      },
+      {
+        tag: 'insanely detailed',
+        name: {
+          ja: '極度に精密',
+          en: 'Insanely Detailed',
+          zh: '极其详细',
+        },
+      },
+      {
+        tag: 'exquisite',
+        name: {
+          ja: '絶妙な',
+          en: 'Exquisite',
+          zh: '精致的',
+        },
+      },
+      {
+        tag: 'beautiful',
+        name: {
+          ja: '美しい',
+          en: 'Beautiful',
+          zh: '美丽的',
+        },
+      },
+    ],
+  },
+  {
+    name: {
+      ja: '画質',
+      en: 'Resolution',
+      zh: '分辨率',
+    },
+    nsfw: false,
+    tags: [
+      {
+        tag: 'FHD',
+        name: {
+          ja: 'フルHD',
+          en: 'FHD',
+          zh: '全高清',
+        },
+      },
+      {
+        tag: 'Full-HD',
+        name: {
+          ja: 'フルHD',
+          en: 'Full-HD',
+          zh: '全高清',
+        },
+      },
+      {
+        tag: '4K',
+        name: {
+          ja: '4K',
+          en: '4K',
+          zh: '4K',
+        },
+      },
+      {
+        tag: '8K',
+        name: {
+          ja: '8K',
+          en: '8K',
+          zh: '8K',
+        },
+      },
+      {
+        tag: '16K',
+        name: {
+          ja: '16K',
+          en: '16K',
+          zh: '16K',
+        },
+      },
+      {
+        tag: 'highres',
+        name: {
+          ja: '高解像度',
+          en: 'High Resolution',
+          zh: '高分辨率',
+        },
+      },
+      {
+        tag: 'absurdres',
+        name: {
+          ja: '超高解像度',
+          en: 'Ultra High Resolution',
+          zh: '超高分辨率',
+        },
+      },
+    ],
+  },
+  {
+    name: {
       ja: '画風',
       en: 'Artistic style',
       zh: '艺术风格',
