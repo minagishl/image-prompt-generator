@@ -13,7 +13,7 @@ export function Input({
 }
 
 const inputContainerStyles = tv({
-  base: "mx-auto w-full rounded-xl border bg-neutral-500/5 p-4 backdrop-blur border-neutral-900/[0.05] sticky bottom-0 mt-8",
+  base: "mx-auto w-full rounded-lg border bg-neutral-500/5 p-4 backdrop-blur border-neutral-900/[0.05] sticky bottom-0 mt-8",
 });
 
 const inputInnerStyles = tv({
