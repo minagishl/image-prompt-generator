@@ -6,8 +6,8 @@ import copy from "copy-to-clipboard";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+    <div className="min-h-screen bg-gradient-to-t from-orange-100 to-gray-50 dark:from-orange-900 dark:to-gray-900 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:80px_80px]"></div>
       <div className="relative z-10 mx-auto max-w-6xl px-4 py-10">
         <div className="mb-10 text-center">
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
@@ -66,7 +66,7 @@ const Select = ({ setValue }: { setValue: (value: string) => void }) => {
               key={lang}
               className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-300 ${
                 activeLanguage === lang
-                  ? "bg-blue-500/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400 shadow-sm"
+                  ? "bg-orange-500/10 text-orange-600 dark:bg-orange-400/10 dark:text-orange-400 shadow-sm"
                   : "text-gray-700 hover:bg-gray-100/70 dark:text-gray-300 dark:hover:bg-gray-700/50"
               }`}
               onClick={() => {
@@ -121,7 +121,7 @@ function Layout() {
               <button
                 className={`flex w-full items-center justify-start rounded-md px-4 py-2.5 text-sm font-medium transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 ${
                   isSelect === Number(key)
-                    ? "bg-blue-50 text-blue-600 dark:bg-gray-700 dark:text-blue-400"
+                    ? "bg-orange-50 text-orange-600 dark:bg-gray-700 dark:text-orange-400"
                     : "text-gray-700 dark:text-gray-300"
                 }`}
                 onClick={() => setIsSelect(Number(key))}
@@ -141,7 +141,7 @@ function Layout() {
           {record[isSelect]?.map((item, index) => (
             <button
               key={index}
-              className="group flex h-auto w-full items-center rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm p-4 transition-all duration-300 hover:border-blue-500/70 hover:bg-blue-50/50 active:scale-[0.98] dark:border-gray-700/50 dark:bg-gray-800/90 dark:hover:border-blue-400/70 dark:hover:bg-blue-900/20"
+              className="group flex h-auto w-full items-center rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm p-4 transition-all duration-300 hover:border-orange-500/70 hover:bg-orange-50/50 active:scale-[0.98] dark:border-gray-700/50 dark:bg-gray-800/90 dark:hover:border-orange-400/70 dark:hover:bg-orange-900/20"
               onClick={() => {
                 setSelectTags((prev) => ({
                   ...prev,
@@ -149,7 +149,7 @@ function Layout() {
                 }));
               }}
             >
-              <span className="font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-all duration-300">
+              <span className="font-medium text-gray-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-all duration-300">
                 {item[Language.toLowerCase() as "en" | "ja" | "zh"]}
               </span>
             </button>
@@ -162,11 +162,11 @@ function Layout() {
               disabled
               placeholder="Please select a tag"
               value={prompt}
-              className="flex-1 rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm px-4 py-3 text-gray-900 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-100 transition-all duration-300 focus:border-blue-500/70 focus:ring-2 focus:ring-blue-500/20"
+              className="flex-1 rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm px-4 py-3 text-gray-900 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-100 transition-all duration-300 focus:border-orange-500/70 focus:ring-2 focus:ring-orange-500/20"
             />
             <div className="flex shrink-0 gap-2">
               <button
-                className="rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm px-4 py-3 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-blue-500/70 hover:bg-blue-50/50 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-300 dark:hover:border-blue-400/70 dark:hover:bg-blue-900/20"
+                className="rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm px-4 py-3 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-orange-500/70 hover:bg-orange-50/50 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-300 dark:hover:border-orange-400/70 dark:hover:bg-orange-900/20"
                 onClick={() => copy(prompt)}
               >
                 Copy
@@ -185,14 +185,14 @@ function Layout() {
           {Object.entries(selectTags).map(([tag, value]) => (
             <div
               key={tag}
-              className="flex items-center rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm p-3 dark:border-gray-700/50 dark:bg-gray-800/90 transition-all duration-300 hover:border-blue-500/70"
+              className="flex items-center rounded-lg border border-gray-200/50 bg-white/95 backdrop-blur-sm p-3 dark:border-gray-700/50 dark:bg-gray-800/90 transition-all duration-300 hover:border-orange-500/70"
             >
               <span className="flex-1 font-medium text-gray-900 dark:text-gray-100">
                 {tag}
               </span>
               <div className="flex items-center gap-2">
                 <button
-                  className="rounded-md border border-gray-200/50 bg-white/95 backdrop-blur-sm px-3 py-1.5 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-blue-500/70 hover:bg-blue-50/50 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-300 dark:hover:bg-blue-900/20"
+                  className="rounded-md border border-gray-200/50 bg-white/95 backdrop-blur-sm px-3 py-1.5 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-orange-500/70 hover:bg-orange-50/50 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-300 dark:hover:bg-orange-900/20"
                   onClick={() =>
                     setSelectTags((prev) => ({
                       ...prev,
@@ -206,7 +206,7 @@ function Layout() {
                   {value}
                 </span>
                 <button
-                  className="rounded-md border border-gray-200/50 bg-white/95 backdrop-blur-sm px-3 py-1.5 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-blue-500/70 hover:bg-blue-50/50 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-300 dark:hover:bg-blue-900/20"
+                  className="rounded-md border border-gray-200/50 bg-white/95 backdrop-blur-sm px-3 py-1.5 text-sm font-medium text-gray-700 transition-all duration-300 hover:border-orange-500/70 hover:bg-orange-50/50 dark:border-gray-700/50 dark:bg-gray-800/90 dark:text-gray-300 dark:hover:bg-orange-900/20"
                   onClick={() =>
                     setSelectTags((prev) => ({
                       ...prev,
