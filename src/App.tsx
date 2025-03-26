@@ -136,7 +136,7 @@ function Layout() {
           ))}
         </div>
       </div>
-      <div className="flex-1 overflow-auto rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-xl p-6 dark:border-gray-800/50 dark:bg-gray-800/80">
+      <div className="flex-1 overflow-scroll h-[calc(100vh-240px)] rounded-lg border border-gray-200/50 bg-white/80 backdrop-blur-xl p-6 dark:border-gray-800/50 dark:bg-gray-800/80">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {record[isSelect]?.map((item, index) => (
             <button
