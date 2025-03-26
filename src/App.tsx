@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import type { Options } from './context'
+import type { TagGroup } from './context'
 import { options } from './context'
 import copy from 'copy-to-clipboard'
 
@@ -35,23 +35,19 @@ interface RecordType {
   }[]
 }
 
-const createRecordFromOptions = (options: Options): RecordType => {
-  return options.tags.reduce<RecordType>((record, tagEntry) => {
-    if (!record[tagEntry.class_id]) {
-      record[tagEntry.class_id] = []
-    }
-    record[tagEntry.class_id].push({
+const createRecordFromOptions = (options: TagGroup[]): RecordType => {
+  return options.reduce<RecordType>((record, group, index) => {
+    record[index] = group.tags.map((tagEntry) => ({
       tag: tagEntry.tag,
-      ja: tagEntry.ja,
-      en: tagEntry.en,
-      zh: tagEntry.zh,
-    })
+      ja: tagEntry.name.ja,
+      en: tagEntry.name.en,
+      zh: tagEntry.name.zh,
+    }))
     return record
   }, {})
 }
 
 const record = createRecordFromOptions(options)
-const classification = options.classification
 
 type selectTags = {
   [key: string]: number
@@ -91,7 +87,7 @@ function Layout() {
                 onClick={() => setIsSelect(Number(key))}
               >
                 {
-                  classification.filter((item) => item.id === Number(key))[0][
+                  options[Number(key)].name[
                     Language.toLowerCase() as 'en' | 'ja' | 'zh'
                   ]
                 }
