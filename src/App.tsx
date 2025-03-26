@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
-import { VStack, Box, Theme, Stack, Text, Input } from "@chakra-ui/react";
+import {
+  VStack,
+  Box,
+  Theme,
+  Stack,
+  Text,
+  Input,
+  Container,
+  Heading,
+} from "@chakra-ui/react";
 import { Button } from "@/components/ui/button";
 import type { Options } from "./context";
 import { options } from "./context";
@@ -12,16 +21,9 @@ function App() {
   return (
     <>
       <Theme appearance="dark">
-        <Box
-          h="100vh"
-          p={{
-            base: 0,
-            md: 4,
-            lg: 8,
-          }}
-        >
+        <Container maxW="container.xl" h="100vh" p={0}>
           <Layout />
-        </Box>
+        </Container>
       </Theme>
     </>
   );
@@ -66,7 +68,7 @@ const Select = ({ setValue }: { setValue: (value: string) => void }) => {
           size="sm"
           defaultValue="EN"
           items={["EN", "JA", "ZH"]}
-          onValueChange={(e) => setValue(e.value)}
+          onValueChange={(e) => e.value && setValue(e.value)}
         />
       </VStack>
     </Stack>
@@ -94,25 +96,25 @@ function Layout() {
   }, [selectTags]);
 
   return (
-    <Box display="flex" h="100%">
+    <Box display="flex" h="100%" gap={8}>
       <Box
-        w={{
-          base: "1/2",
-          md: "1/4",
-        }}
-        p={4}
-        overflow="scroll"
-        maxW={64}
+        w="260px"
+        p={6}
+        overflow="auto"
+        borderRightWidth="1px"
+        position="sticky"
+        top={0}
+        h="100vh"
       >
-        <Text fontWeight="medium" paddingInlineStart={4} fontSize="sm">
+        <Heading as="h3" size="sm" mb={2}>
           Language
-        </Text>
-        <Box padding={4}>
+        </Heading>
+        <Box mb={6}>
           <Select setValue={setLanguage} />
         </Box>
-        <Text fontWeight="medium" paddingInlineStart={4} fontSize="sm">
+        <Heading as="h3" size="sm" mb={2}>
           Options
-        </Text>
+        </Heading>
         <Stack mt={2} flexDir="column" gap={0}>
           {Object.entries(record).map(([key]) => (
             <Stack key={key} mt={2} flexDir="column" gap={0}>
@@ -134,8 +136,8 @@ function Layout() {
           ))}
         </Stack>
       </Box>
-      <Box flex="1" p={4}>
-        <Stack direction="row" wrap="wrap" gap={6}>
+      <Box flex="1" p={6}>
+        <Stack direction="row" wrap="wrap" gap={4}>
           {record[isSelect]?.map((item, index) => (
             <Button
               variant="outline"
@@ -146,9 +148,13 @@ function Layout() {
               borderWidth="1px"
               borderRadius="md"
               width={{
-                base: "calc(100% - 16px)", // Mobile: 1
-                md: "calc(50% - 16px)", // Tablet: 2
-                lg: "calc(33.33% - 16px)", // Desktop: 3
+                base: "100%",
+                md: "calc(50% - 8px)",
+                lg: "calc(33.33% - 11px)",
+              }}
+              transition="all 0.2s"
+              _active={{
+                transform: "scale(0.98)",
               }}
               _hover={{ shadow: "md" }}
               onClick={() => {
@@ -166,7 +172,7 @@ function Layout() {
           ))}
         </Stack>
         {/* Show Prompt */}
-        <Stack mt={4} direction="row" gap={4} width="full">
+        <Stack mt={8} direction="row" gap={4} width="full">
           <Box flex={1}>
             <Input
               disabled
@@ -189,7 +195,7 @@ function Layout() {
           </Group>
         </Stack>
         {/* Remove added tags and adjust values (max: 10, min: -10) */}
-        <Stack mt={4}>
+        <Stack mt={6} gap={3}>
           {Object.entries(selectTags).map(([tag, value]) => (
             <Stack key={tag} direction="row" alignItems="center">
               <Text flex="1">{tag}</Text>
