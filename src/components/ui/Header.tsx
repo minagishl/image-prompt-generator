@@ -1,6 +1,6 @@
 interface HeaderProps {
-  title: string;
-  description: string;
+  title: string
+  description: string
 }
 
 export function Header({ title, description }: HeaderProps) {
@@ -11,5 +11,5 @@ export function Header({ title, description }: HeaderProps) {
       </h1>
       <p className="mt-3 text-lg text-gray-600">{description}</p>
     </div>
-  );
+  )
 }
